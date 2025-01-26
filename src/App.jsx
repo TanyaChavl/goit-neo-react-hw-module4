@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Toaster, toast } from "react-hot-toast";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal"
+import { ToastContainer } from "react-toastify";
 import "./App.css";
 
 const API_KEY = "lz3kAmWKx0MAP7z-CUvFKRCJDxCmwfG-UKW335zGviI";
@@ -46,7 +46,7 @@ function App() {
 
   const handleSearchSubmit = (newQuery) => {
     if (newQuery.trim() === "") {
-      toast.error("Please enter a search query!");
+      ToastContainer.error("Please enter a search images and photos query!");
       return;
     }
 
@@ -72,7 +72,7 @@ function App() {
 
   return (
     <div>
-      <Toaster position="top-right" />
+      <ToastContainer position="top-right" autoClose={3000} />
       <SearchBar onSubmit={handleSearchSubmit} />
       {error && <ErrorMessage message={error} />}
       <ImageGallery images={images} onImageClick={handleImageClick} />
